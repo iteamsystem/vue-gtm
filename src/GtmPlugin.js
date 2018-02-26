@@ -33,9 +33,9 @@ export default class AnalyticsPlugin {
 			let dataLayer = window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
 				'event': event || 'interaction',
-				'target': category,
-				'action': action,
-				'target-properties': label,
+				'EventCategory': category,
+				'EventAction': action,
+				'EventLabel': label,
 				'value': value,
 				'interaction-type': noninteraction,
 				...rest
