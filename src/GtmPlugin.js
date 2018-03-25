@@ -6,14 +6,15 @@ import pluginConfig from './config';
 var inBrowser = typeof window !== 'undefined';
 
 export default class AnalyticsPlugin {
-	trackView(screenName, path) {
+	trackView(screenName, path, referrer) {
 		if (inBrowser && pluginConfig.enabled) {
 			logDebug('Dispatching TrackView', { screenName, path });
 
 			let dataLayer = window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
 				'event': 'content-view',
-				'content-name': path
+				'content-name': path,
+				'content-referrer': referrer
 			});
 		}	
 	}
@@ -33,9 +34,9 @@ export default class AnalyticsPlugin {
 			let dataLayer = window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
 				'event': event || 'interaction',
-				'EventCategory': category,
-				'EventAction': action,
-				'EventLabel': label,
+				'category': category,
+				'action': action,
+				'target-properties': label,
 				'value': value,
 				'interaction-type': noninteraction,
 				...rest
