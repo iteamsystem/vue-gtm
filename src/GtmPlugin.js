@@ -8,7 +8,7 @@ var inBrowser = typeof window !== 'undefined';
 export default class AnalyticsPlugin {
 	trackView(screenName, path, referrer) {
 		if (inBrowser && pluginConfig.enabled) {
-			logDebug('Dispatching TrackView', { screenName, path });
+			logDebug('Dispatching TrackView', { screenName, path, referrer });
 
 			let dataLayer = window.dataLayer = window.dataLayer || [];
 			dataLayer.push({
